@@ -15,4 +15,4 @@ function rellenada(e) {
     console.log(e.target);
 }
 
-comenzar();
+comenzar(); 
