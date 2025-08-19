@@ -112,10 +112,6 @@ button:hover {
 .box img.ficha {
   width: 100%;
   height: 100%;
-<<<<<<< HEAD
   object-fit: contain; /* Se ajusta sin deformarse */
-=======
-  object-fit: fill
->>>>>>> 67ff477 (guardar)
 }
 
