@@ -1,24 +1,31 @@
 let text = document.getElementById("enunciado");
 let btnReset = document.getElementById("btnRestart");
+let btnFondo = document.getElementById("btnFondo")
+let btnbtnFondoAnterior = document.getElementById("btnFondoAnterior");
 let boxes = Array.from(document.getElementsByClassName("box"));
 
 
-let jugador1 = "src/images/1.jpg";
-let jugador2 = "src/images/o.jpg";
+
+let jugador1 = "src/images/1.png";
+let jugador2 = "src/images/o.png";
 let currentPlayer = jugador1;
 let posicion = Array(9).fill(null);
+let turnos = 0;
 
 const comenzar = () => {
+    boxes.forEach(box => box.addEventListener('click', rellenada));
     boxes.forEach(box => box.addEventListener('click', rellenada));
 }
 
 function rellenada(e) {
     const id = e.target.id;
+    
+    
 
     if (!posicion[id]) {
         posicion[id] = currentPlayer;
 
-        /* Crear una etiqueta <img> con JS para rellenar con la imagen que teremos poner */
+        /* etiqueta <img> para rellenar con la imagen*/
         let ficha = document.createElement("img");
         ficha.src = currentPlayer;
         ficha.alt = "jugador";
@@ -31,10 +38,19 @@ function rellenada(e) {
         let cuadrosQueGanaron = resultadoJuego();
         if(cuadrosQueGanaron !== false) {
             text.textContent = "El jugador " + (currentPlayer === jugador1 ? "1" : "2") + " ha ganado";
+            turnos = 0;
+        }
+        else if(turnos > 8){
+            text.textContent = "Empate!"
+            turnos = 0;
         }
 
         /* Cambiar turno */
         currentPlayer = currentPlayer === jugador1 ? jugador2 : jugador1;
+        
+        
+        console.log(turnos);
+        
     }
 }
 
@@ -42,11 +58,12 @@ btnReset.addEventListener('click', function() {
     function resetear() {
         posicion.fill(null);
         boxes.forEach(box => {
-            box.innerHTML = ''; // elimina las imágenes
-            box.style.backgroundColor = ''; // reinicia color si había victoria
+            box.innerHTML = '';
+            box.style.backgroundColor = '';
         });
         text.textContent = "Tic Tac Toe";
         currentPlayer = jugador1;
+        turnos = 0;
     }
     resetear();
 });
@@ -65,10 +82,41 @@ function resultadoJuego() {
         let c = condition[2];
 
         if(posicion[a] && (posicion[a] == posicion[b] && posicion[a] == posicion[c])) {
+            turnos = 0;
             return [a, b, c];
+            
         }
     }
+    turnos++
     return false;
 }
 
 comenzar();
+
+const imagenes = [
+    "url('src/images/fondo1.jpg')",
+    "url('src/images/fondo2.jpg')",
+    "url('src/images/fondo3.webp')",
+    "url('src/images/fondo4.jpg')"
+];
+
+let turnoImagen = 0;
+
+
+btnFondo.addEventListener('click', function () {
+    document.body.style.backgroundImage = imagenes[turnoImagen];
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundSize = "cover";
+
+    turnoImagen = (turnoImagen + 1) % imagenes.length;
+});
+
+btnFondoAnterior.addEventListener('click', function () {
+    turnoImagen = (turnoImagen - 1 + imagenes.length) % imagenes.length;
+
+    document.body.style.backgroundImage = imagenes[turnoImagen];
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundSize = "cover";
+});
+
+/* test */
