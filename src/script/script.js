@@ -46,19 +46,37 @@ function rellenada(e) {
         if (ganador === "1") {
             victoriasJ1++;
             localStorage.setItem("victoriasJ1", victoriasJ1);
-            
-            /* metodo for each donde cambiaremos la imagen actual por un gif al ganar */
-            cuadrosQueGanaron.forEach(i =>{
-                const tablero = boxes[i]
-                const imagen = tablero.children[0];
-                if (imagen && imagen.src.includes("src/images/1.png")) {
-                    imagen.src = "src/images/11.gif"; 
-                }    
 
-        });      
+            boxes.forEach(box => {
+            const imagen = box.children[0]
+            if(imagen && imagen.src.includes("src/images/o.png")){
+                    imagen.src ="src/images/22.gif";
+                }
+            else{
+                    if(imagen && imagen.src.includes("src/images/1.png")){
+                        imagen.src ="src/images/11.gif";
+                    }
+                }
+            })   
+                              
         } else {
+
             victoriasJ2++;
             localStorage.setItem("victoriasJ2", victoriasJ2);
+            
+           boxes.forEach(box => {
+
+                const imagen = box.children[0]
+                if(imagen && imagen.src.includes("src/images/o.png")){
+                        imagen.src ="src/images/33.gif";
+                    }
+                else{
+                    if(imagen && imagen.src.includes("src/images/1.png")){
+                        imagen.src ="src/images/44.gif";
+                    }
+                }
+
+           })
         }
 
         actualizarMarcador();

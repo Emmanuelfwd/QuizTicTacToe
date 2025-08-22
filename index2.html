@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gato y Ratón</title>
+  <link rel="stylesheet" href="src/css/Aifight.css" />
+</head>
+<body>
+  <header>
+    <h1>JUEGA GATO Y RATÓN</h1>
+  </header>
+
+  <div id="container">
+        <h1 id="mensajeJuego">¡A Jugar!</h1>
+
+        <div class="game-with-panel">
+    <!-- Panel lateral -->
+    <div class="panel">
+        <button id="btnReiniciar">Reiniciar</button>
+        <button id="btnSiguienteFondo">Siguiente Fondo</button>
+        <button id="btnFondoPrevio">Fondo Anterior</button>
+        <button id="btnResetPuntuacion">Reset Puntaje</button>
+        <a href="inicio.html"><button>Menú Principal</button></a>
+    </div>
+
+    <!-- Tablero de juego -->
+    <div id="tableroJuego">
+        <div class="casilla" id="casilla0"></div>
+        <div class="casilla" id="casilla1"></div>
+        <div class="casilla" id="casilla2"></div>
+        <div class="casilla" id="casilla3"></div>
+        <div class="casilla" id="casilla4"></div>
+        <div class="casilla" id="casilla5"></div>
+        <div class="casilla" id="casilla6"></div>
+        <div class="casilla" id="casilla7"></div>
+        <div class="casilla" id="casilla8"></div>
+    </div>
+</div>
+
+  <script src="src/script/vsAi.js"></script>
+</body>
+</html>
